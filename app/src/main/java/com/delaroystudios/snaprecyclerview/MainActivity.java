@@ -1,19 +1,19 @@
 package com.delaroystudios.snaprecyclerview;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.widget.Toast;
-
 import com.delaroystudios.snaprecyclerview.api.Client;
 import com.delaroystudios.snaprecyclerview.api.Service;
+import com.delaroystudios.snaprecyclerview.item.MovieItem;
 import com.delaroystudios.snaprecyclerview.model.Movie;
 import com.delaroystudios.snaprecyclerview.model.MoviesResponse;
 import com.takusemba.multisnaprecyclerview.MultiSnapRecyclerView;
-
+import com.xwray.groupie.GroupAdapter;
+import com.xwray.groupie.Section;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,11 +45,20 @@ public class MainActivity extends AppCompatActivity {
                     List<Movie> movies = response.body().getResults();
                     if (response.isSuccessful()){
                         if (response.body() != null){
+
+                            GroupAdapter groupAdapter = new GroupAdapter();
+                            Section section = new Section();
+                            for (Movie movie : movies) {
+                                section.add(new MovieItem(movie));
+                            }
+                            groupAdapter.add(section);
+
+
                             MovieAdapter firstAdapter = new MovieAdapter(getApplicationContext(), movies);
                             MultiSnapRecyclerView firstRecyclerView = (MultiSnapRecyclerView)findViewById(R.id.first_recycler_view);
                             LinearLayoutManager firstManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
                             firstRecyclerView.setLayoutManager(firstManager);
-                            firstRecyclerView.setAdapter(firstAdapter);
+                            firstRecyclerView.setAdapter(groupAdapter);
                         }
                     }
                 }
