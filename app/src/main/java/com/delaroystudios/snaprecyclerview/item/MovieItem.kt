@@ -5,6 +5,9 @@ import com.delaroystudios.snaprecyclerview.R
 import com.delaroystudios.snaprecyclerview.model.Movie
 import com.xwray.groupie.Item
 import com.xwray.groupie.ViewHolder
+import kotlinx.android.synthetic.main.movie_card.view.thumbnail
+import kotlinx.android.synthetic.main.movie_card.view.title
+import kotlinx.android.synthetic.main.movie_card.view.userrating
 
 class MovieItem(
   private val movie: Movie
@@ -17,16 +20,17 @@ class MovieItem(
     position: Int
   ) {
     val context = viewHolder.root.context
-    viewHolder.title.setText(movie.getOriginalTitle())
+
+    viewHolder.itemView.title.setText(movie.getOriginalTitle())
     val vote = movie.getVoteAverage()
-    viewHolder.userrating.setText(vote)
+    viewHolder.itemView.userrating.setText(vote.toString())
 
     val poster = "https://image.tmdb.org/t/p/w500" + movie.getPosterPath()
 
     Glide.with(context)
         .load(poster)
         .placeholder(R.drawable.load)
-        .into(viewHolder.thumbnail)
+        .into(viewHolder.itemView.thumbnail)
   }
 
 

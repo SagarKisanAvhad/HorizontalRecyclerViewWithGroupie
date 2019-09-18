@@ -1,10 +1,10 @@
 package com.delaroystudios.snaprecyclerview;
 
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import android.util.Log;
 import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import com.delaroystudios.snaprecyclerview.api.Client;
 import com.delaroystudios.snaprecyclerview.api.Service;
 import com.delaroystudios.snaprecyclerview.item.MovieItem;
@@ -53,8 +53,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                             groupAdapter.add(section);
 
-
-                            MovieAdapter firstAdapter = new MovieAdapter(getApplicationContext(), movies);
+                            //MovieAdapter firstAdapter = new MovieAdapter(getApplicationContext(), movies);
                             MultiSnapRecyclerView firstRecyclerView = (MultiSnapRecyclerView)findViewById(R.id.first_recycler_view);
                             LinearLayoutManager firstManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
                             firstRecyclerView.setLayoutManager(firstManager);
