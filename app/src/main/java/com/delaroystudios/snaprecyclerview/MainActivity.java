@@ -52,9 +52,8 @@ public class MainActivity extends AppCompatActivity {
                                 section.add(new MovieItem(movie));
                             }
                             groupAdapter.add(section);
-
-                            //MovieAdapter firstAdapter = new MovieAdapter(getApplicationContext(), movies);
-                            MultiSnapRecyclerView firstRecyclerView = (MultiSnapRecyclerView)findViewById(R.id.first_recycler_view);
+                          MultiSnapRecyclerView firstRecyclerView =
+                              findViewById(R.id.first_recycler_view);
                             LinearLayoutManager firstManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
                             firstRecyclerView.setLayoutManager(firstManager);
                             firstRecyclerView.setAdapter(groupAdapter);
@@ -93,11 +92,19 @@ public class MainActivity extends AppCompatActivity {
                         if (response.body() != null){
                             List<Movie> movies = response.body().getResults();
 
-                            MovieAdapter secondAdapter = new MovieAdapter(getApplicationContext(), movies);
-                            MultiSnapRecyclerView secondRecyclerView =(MultiSnapRecyclerView) findViewById(R.id.second_recycler_view);
+                          GroupAdapter groupAdapter = new GroupAdapter();
+                          Section section = new Section();
+                          for (Movie movie : movies) {
+                            section.add(new MovieItem(movie));
+                          }
+
+                          groupAdapter.add(section);
+
+                          MultiSnapRecyclerView secondRecyclerView =
+                              findViewById(R.id.second_recycler_view);
                             LinearLayoutManager secondManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false);
                             secondRecyclerView.setLayoutManager(secondManager);
-                            secondRecyclerView.setAdapter(secondAdapter);
+                          secondRecyclerView.setAdapter(groupAdapter);
 
                         }
                     }
