@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
                         if (response.body() != null){
 
                             GroupAdapter groupAdapter = new GroupAdapter();
+
                             Section section = new Section();
                             for (Movie movie : movies) {
                                 section.add(new MovieItem(movie));
